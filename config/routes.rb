@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  # Root route (landing page)
+  # Root route (optional, but recommended)
   root "places#index"
 
   # Routes for places
-  resources :places, only: [:index, :show, :new, :create] do
-    # Routes for entries (nested under places)
+  resources :places do
+    # Nested routes for entries (entries belong to a place)
     resources :entries, only: [:new, :create]
   end
 end
