@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Root route (landing page)
+  root "places#index"
 
-  # Defines the root path route ("/")
-  # get("/", { :controller => "articles", :action => "index" })
+  # Routes for places
+  resources :places, only: [:index, :show, :new, :create] do
+    # Routes for entries (nested under places)
+    resources :entries, only: [:new, :create]
+  end
 end
